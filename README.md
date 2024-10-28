@@ -1,2 +1,2 @@
 # grocery-store
-Mobile grocery store application, enabling users to browse, manage, and interact with products.
+Mobile Grocery Store Application built with React Native and Expo, allowing users to browse, manage, and interact with products.
