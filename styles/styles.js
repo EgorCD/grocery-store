@@ -2,6 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const COLORS = {
     primary: '#007AFF',
+    secondary: '#9BE887',
     background: '#F9F9F9',
     text: '#1C1C1E',
     secondaryText: '#8E8E93',
@@ -55,9 +56,23 @@ export const COMMON_STYLES = StyleSheet.create({
         paddingHorizontal: SPACING.large,
         borderRadius: 90,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     primaryButtonText: {
         color: COLORS.white,
+        fontSize: FONT_SIZES.medium,
+        fontWeight: FONT_WEIGHTS.semibold,
+    },
+    secondaryButton: {
+        backgroundColor: COLORS.secondary,
+        paddingVertical: SPACING.medium,
+        paddingHorizontal: SPACING.large,
+        borderRadius: 90,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    secondaryButtonText: {
+        color: COLORS.text,
         fontSize: FONT_SIZES.medium,
         fontWeight: FONT_WEIGHTS.semibold,
     },
@@ -74,5 +89,31 @@ export const COMMON_STYLES = StyleSheet.create({
         height: 1,
         backgroundColor: COLORS.secondaryText,
         marginVertical: SPACING.medium,
+    },
+    mapContainer: {
+        flex: 1,
+        borderRadius: 15,
+        overflow: 'hidden',
+    },
+    mapPlaceholder: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: COLORS.white,
+        borderRadius: 15,
+    },
+    alertText: {
+        fontSize: FONT_SIZES.medium,
+        color: COLORS.error,
+        textAlign: 'center',
+        padding: SPACING.small,
+        fontWeight: FONT_WEIGHTS.semibold,
+    },
+    inputContainer: {
+        marginBottom: SPACING.medium,
+    },
+    alertContainer: {
+        padding: SPACING.small,
+        alignItems: 'center',
     },
 });
