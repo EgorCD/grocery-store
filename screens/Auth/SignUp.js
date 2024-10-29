@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
+import { View, TextInput, Text, TouchableOpacity, Alert } from 'react-native';
 import { signUp } from '../../services/AuthService';
 import { COMMON_STYLES, COLORS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '../../styles/styles';
 
 function SignUp({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [error, setError] = useState(null);
 
     const handleSignUp = async () => {
         try {
-            await signUp(email, password);
+            await signUp(email, password, { name });
             setError(null);
         } catch (err) {
             setError(err.message);
-            console.log("Sign-up Error:", err.message);
+            Alert.alert("Sign-up Error", err.message);
         }
     };
 
@@ -22,6 +23,13 @@ function SignUp({ navigation }) {
         <View style={COMMON_STYLES.container}>
             <View style={{ marginTop: SPACING.xxlarge }}>
                 <Text style={COMMON_STYLES.titleText}>Sign Up</Text>
+                <TextInput
+                    style={COMMON_STYLES.input}
+                    placeholder="Name"
+                    placeholderTextColor={COLORS.secondaryText}
+                    value={name}
+                    onChangeText={setName}
+                />
                 <TextInput
                     style={COMMON_STYLES.input}
                     placeholder="Email"
@@ -40,7 +48,9 @@ function SignUp({ navigation }) {
                 {error && <Text style={{ color: COLORS.error, marginVertical: SPACING.small }}>{error}</Text>}
                 <View style={{ marginTop: SPACING.xxlarge }}>
                     <TouchableOpacity style={COMMON_STYLES.primaryButton} onPress={handleSignUp}>
-                        <Text style={COMMON_STYLES.primaryButtonText}>Sign Up</Text>
+                        <Text style={COMMON_STYLES.primaryButtonText}>
+                            Sign Up
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <View style={{ marginTop: SPACING.medium }}>
