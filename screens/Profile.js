@@ -1,19 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
 import { getAuth } from 'firebase/auth';
-import { logOut } from '../services/AuthService';
+import { logOut, getUserProfile, updateUserProfile } from '../services/AuthService';
 import { app } from '../firebaseConfig';
 import { COMMON_STYLES, COLORS, SPACING } from '../styles/styles';
 
 function Profile() {
     const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
+    const [isEditing, setIsEditing] = useState(false);
 
     useEffect(() => {
-        const auth = getAuth(app);
-        const user = auth.currentUser;
-        if (user) {
-            setEmail(user.email);
-        }
+        const fetchUserProfile = async () => {
+            const auth = getAuth(app);
+            const currentUser = auth.currentUser;
+            if (currentUser) {
+                setEmail(currentUser.email);
+                try {
+                    const profileData = await getUserProfile(currentUser.uid);
+                    setName(profileData.name);
+                } catch (error) {
+                    Alert.alert("Error", "Failed to fetch user profile.");
+                }
+            }
+        };
+        fetchUserProfile();
     }, []);
 
     const handleSignOut = async () => {
@@ -24,21 +35,69 @@ function Profile() {
         }
     };
 
+    const editStatus = () => {
+        setIsEditing(!isEditing);
+    };
+
+    const handleSave = async () => {
+        try {
+            await updateUserProfile({ uid: getAuth(app).currentUser.uid, name });
+            Alert.alert("Profile Updated", "Your name has been updated successfully.");
+            setIsEditing(false);
+        } catch (error) {
+            Alert.alert("Error", "Failed to update profile.");
+            console.error("Error updating profile:", error);
+        }
+    };
+
     return (
         <View style={COMMON_STYLES.container}>
             <View style={{ marginTop: SPACING.medium }}>
-                <Text style={COMMON_STYLES.titleText}>Account Details</Text>
+                <Text style={COMMON_STYLES.titleText}>
+                    Account Details
+                </Text>
                 <TextInput
-                    style={[COMMON_STYLES.input, { backgroundColor: COLORS.background }]}
+                    style={COMMON_STYLES.input}
+                    value={name}
+                    placeholder="Name"
+                    onChangeText={setName}
+                    editable={isEditing}
+                />
+                <TextInput
+                    style={COMMON_STYLES.input}
                     value={email}
                     editable={false}
                     placeholder="Email"
                     placeholderTextColor={COLORS.secondaryText}
                 />
-                <View style={{ marginTop: SPACING.xxlarge }}>
-                    <TouchableOpacity style={COMMON_STYLES.primaryButton} onPress={handleSignOut}>
-                        <Text style={COMMON_STYLES.primaryButtonText}>Sign Out</Text>
-                    </TouchableOpacity>
+                <View style={{ flexDirection: 'row', marginTop: SPACING.medium }}>
+                    {isEditing ? (
+                        <>
+                            <TouchableOpacity style={[COMMON_STYLES.primaryButton, { flex: 2, marginRight: SPACING.small }]} onPress={handleSave}>
+                                <Text style={COMMON_STYLES.primaryButtonText}>
+                                    Save
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[COMMON_STYLES.secondaryButton, { flex: 1 }]} onPress={editStatus}>
+                                <Text style={COMMON_STYLES.secondaryButtonText}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                        </>
+                    ) : (
+                        <>
+                            <TouchableOpacity style={[COMMON_STYLES.secondaryButton, { flex: 2, marginRight: SPACING.small }]} onPress={editStatus}>
+                                <Text style={COMMON_STYLES.secondaryButtonText}>
+                                    Edit Name
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={[COMMON_STYLES.primaryButton, { flex: 1 }]} onPress={handleSignOut}>
+                                <Text style={COMMON_STYLES.primaryButtonText}>
+                                    Sign Out
+                                </Text>
+                            </TouchableOpacity>
+                        </>
+                    )}
                 </View>
             </View>
         </View>
