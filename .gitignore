@@ -36,3 +36,6 @@ yarn-error.*
 
 # Firebase configuration
 firebaseConfig.js
+
+# .env for storing api keys
+.env
