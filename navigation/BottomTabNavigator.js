@@ -24,7 +24,7 @@ function BottomTabNavigator() {
 
                     return <Icon name={iconName} size={size} color={color} />;
                 },
-                tabBarActiveTintColor: 'blue',
+                tabBarActiveTintColor: 'black',
                 tabBarInactiveTintColor: 'gray',
                 headerLeft: () => route.name !== 'Home' ? <BackButton navigation={navigation} /> : null,
             })}
