@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { Alert, View, Text } from 'react-native';
 import * as Location from 'expo-location';
 import { COMMON_STYLES } from '../styles/styles';
-import { getCoordinates } from '../services/api';
 
-function Map({ initialAddress }) {
+function Map({ addresses }) {
     const [region, setRegion] = useState(null);
 
     useEffect(() => {
@@ -26,20 +25,6 @@ function Map({ initialAddress }) {
         })();
     }, []);
 
-    useEffect(() => {
-        if (initialAddress) {
-            getCoordinates(initialAddress)
-                .then(coords => {
-                    setRegion({
-                        ...coords,
-                        latitudeDelta: 0.0322,
-                        longitudeDelta: 0.0221,
-                    });
-                })
-                .catch(err => Alert.alert('Error', err.message));
-        }
-    }, [initialAddress]);
-
     if (!region) {
         return (
             <View style={COMMON_STYLES.mapPlaceholder}>
@@ -48,12 +33,22 @@ function Map({ initialAddress }) {
         );
     }
 
+    const outletMarkers = addresses.map((location, index) => (
+        <Marker
+            key={index}
+            coordinate={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+            }}
+            title={location.name}
+            description={location.address}
+        />
+    ));
+
     return (
-        <View style={COMMON_STYLES.mapContainer}>
-            <MapView style={{ flex: 1 }} region={region} showsUserLocation>
-                <Marker coordinate={region} title="Current Location" />
-            </MapView>
-        </View>
+        <MapView style={{ flex: 1 }} region={region} showsUserLocation>
+            {outletMarkers}
+        </MapView>
     );
 }
 
