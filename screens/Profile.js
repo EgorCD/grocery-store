@@ -61,16 +61,16 @@ function Profile() {
             return (
                 <>
                     <TouchableOpacity
-                        style={[COMMON_STYLES.secondaryButton, { flex: 2, marginRight: SPACING.small }]}
+                        style={[COMMON_STYLES.primaryButton, { flex: 2, marginRight: SPACING.small }]}
                         onPress={editStatus}
                     >
-                        <Text style={COMMON_STYLES.secondaryButtonText}>Edit Name</Text>
+                        <Text style={COMMON_STYLES.primaryButtonText}>Edit Name</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={[COMMON_STYLES.primaryButton, { flex: 1 }]}
+                        style={[COMMON_STYLES.secondaryButton, { flex: 1 }]}
                         onPress={handleSignOut}
                     >
-                        <Text style={COMMON_STYLES.primaryButtonText}>Sign Out</Text>
+                        <Text style={COMMON_STYLES.secondaryButtonText}>Sign Out</Text>
                     </TouchableOpacity>
                 </>
             );
