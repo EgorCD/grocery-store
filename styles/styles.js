@@ -2,9 +2,10 @@ import { StyleSheet } from 'react-native';
 
 export const COLORS = {
     primary: '#007AFF',
-    secondary: '#9BE887',
+    secondary: '#D7443E',
     background: '#F9F9F9',
     text: '#1C1C1E',
+    invertedText: '#FFFFFF',
     secondaryText: '#8E8E93',
     white: '#FFFFFF',
     error: '#FF3B30',
@@ -72,7 +73,7 @@ export const COMMON_STYLES = StyleSheet.create({
         justifyContent: 'center',
     },
     secondaryButtonText: {
-        color: COLORS.text,
+        color: COLORS.invertedText,
         fontSize: FONT_SIZES.medium,
         fontWeight: FONT_WEIGHTS.semibold,
     },
