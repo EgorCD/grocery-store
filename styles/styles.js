@@ -94,6 +94,7 @@ export const COMMON_STYLES = StyleSheet.create({
         flex: 1,
         borderRadius: 15,
         overflow: 'hidden',
+        marginBottom: SPACING.medium,
     },
     mapPlaceholder: {
         flex: 1,
