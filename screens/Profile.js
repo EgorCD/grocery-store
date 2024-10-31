@@ -39,6 +39,44 @@ function Profile() {
         setIsEditing(!isEditing);
     };
 
+    const renderButtons = () => {
+        if (isEditing) {
+            return (
+                <>
+                    <TouchableOpacity
+                        style={[COMMON_STYLES.primaryButton, { flex: 2, marginRight: SPACING.small }]}
+                        onPress={handleSave}
+                    >
+                        <Text style={COMMON_STYLES.primaryButtonText}>Save</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[COMMON_STYLES.secondaryButton, { flex: 1 }]}
+                        onPress={editStatus}
+                    >
+                        <Text style={COMMON_STYLES.secondaryButtonText}>Cancel</Text>
+                    </TouchableOpacity>
+                </>
+            );
+        } else {
+            return (
+                <>
+                    <TouchableOpacity
+                        style={[COMMON_STYLES.secondaryButton, { flex: 2, marginRight: SPACING.small }]}
+                        onPress={editStatus}
+                    >
+                        <Text style={COMMON_STYLES.secondaryButtonText}>Edit Name</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={[COMMON_STYLES.primaryButton, { flex: 1 }]}
+                        onPress={handleSignOut}
+                    >
+                        <Text style={COMMON_STYLES.primaryButtonText}>Sign Out</Text>
+                    </TouchableOpacity>
+                </>
+            );
+        }
+    };
+
     const handleSave = async () => {
         try {
             await updateUserProfile({ uid: getAuth(app).currentUser.uid, name });
@@ -71,33 +109,7 @@ function Profile() {
                     placeholderTextColor={COLORS.secondaryText}
                 />
                 <View style={{ flexDirection: 'row', marginTop: SPACING.medium }}>
-                    {isEditing ? (
-                        <>
-                            <TouchableOpacity style={[COMMON_STYLES.primaryButton, { flex: 2, marginRight: SPACING.small }]} onPress={handleSave}>
-                                <Text style={COMMON_STYLES.primaryButtonText}>
-                                    Save
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[COMMON_STYLES.secondaryButton, { flex: 1 }]} onPress={editStatus}>
-                                <Text style={COMMON_STYLES.secondaryButtonText}>
-                                    Cancel
-                                </Text>
-                            </TouchableOpacity>
-                        </>
-                    ) : (
-                        <>
-                            <TouchableOpacity style={[COMMON_STYLES.secondaryButton, { flex: 2, marginRight: SPACING.small }]} onPress={editStatus}>
-                                <Text style={COMMON_STYLES.secondaryButtonText}>
-                                    Edit Name
-                                </Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={[COMMON_STYLES.primaryButton, { flex: 1 }]} onPress={handleSignOut}>
-                                <Text style={COMMON_STYLES.primaryButtonText}>
-                                    Sign Out
-                                </Text>
-                            </TouchableOpacity>
-                        </>
-                    )}
+                    {renderButtons()}
                 </View>
             </View>
         </View>
