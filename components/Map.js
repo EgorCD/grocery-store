@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { COMMON_STYLES } from '../styles/styles';
 import { requestLocationPermission, getCurrentLocation } from '../services/locationService';
 import { generateMarkers } from '../services/markerService';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 function Map({ addresses }) {
     const [region, setRegion] = useState(null);
@@ -27,8 +28,8 @@ function Map({ addresses }) {
 
     if (!region) {
         return (
-            <View style={COMMON_STYLES.mapPlaceholder}>
-                <Text style={COMMON_STYLES.alertText}>Loading Map...</Text>
+            <View style={COMMON_STYLES.loadingContainer}>
+                <LoadingIndicator />
             </View>
         );
     }
