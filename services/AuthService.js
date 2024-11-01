@@ -1,9 +1,21 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { getFirestore, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { app } from '../firebaseConfig';
+import { app } from "../firebaseConfig";
+
 
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+export const initializeAuthListener = (setAuthenticated) => {
+    const auth = getAuth(app);
+
+    const removeAuthListener = onAuthStateChanged(
+        auth,
+        (user) => setAuthenticated(!!user)
+    );
+
+    return removeAuthListener;
+};
 
 export const signUp = async (email, password, additionalData) => {
     try {
