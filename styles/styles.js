@@ -118,4 +118,9 @@ export const COMMON_STYLES = StyleSheet.create({
         padding: SPACING.small,
         alignItems: 'center',
     },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });
