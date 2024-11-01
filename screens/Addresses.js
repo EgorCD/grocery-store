@@ -3,9 +3,10 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import Map from '../components/Map';
 import { COMMON_STYLES, COLORS, SPACING } from '../styles/styles';
 import outletAddresses from '../data/outletAddresses';
+import categoryOptions from '../data/categoryOptions';
 
 function Addresses() {
-    const [selectedCategory, setSelectedCategory] = useState('Coffee');
+    const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0].name);
     const filteredAddresses = outletAddresses.filter(location => location.category === selectedCategory);
 
     return (
@@ -16,34 +17,23 @@ function Addresses() {
                 </Text>
             </View>
             <View style={{ flexDirection: 'row', justifyContent: 'left', marginTop: SPACING.small, marginBottom: SPACING.medium }}>
-                <TouchableOpacity
-                    style={[
-                        COMMON_STYLES.primaryButton,
-                        { backgroundColor: selectedCategory === 'Coffee' ? COLORS.primary : COLORS.white, marginRight: SPACING.small }
-                    ]}
-                    onPress={() => setSelectedCategory('Coffee')}
-                >
-                    <Text style={[
-                        COMMON_STYLES.primaryButtonText,
-                        { color: selectedCategory === 'Coffee' ? 'white' : 'black' }
-                    ]}>
-                        Coffee
-                    </Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={[
-                        COMMON_STYLES.primaryButton,
-                        { backgroundColor: selectedCategory === 'Grocery' ? COLORS.primary : COLORS.white }
-                    ]}
-                    onPress={() => setSelectedCategory('Grocery')}
-                >
-                    <Text style={[
-                        COMMON_STYLES.primaryButtonText,
-                        { color: selectedCategory === 'Grocery' ? 'white' : 'black' }
-                    ]}>
-                        Grocery
-                    </Text>
-                </TouchableOpacity>
+                {categoryOptions.map((category) => (
+                    <TouchableOpacity
+                        key={category.id}
+                        style={[
+                            COMMON_STYLES.primaryButton,
+                            { backgroundColor: selectedCategory === category.name ? COLORS.primary : COLORS.white, marginRight: SPACING.small }
+                        ]}
+                        onPress={() => setSelectedCategory(category.name)}
+                    >
+                        <Text style={[
+                            COMMON_STYLES.primaryButtonText,
+                            { color: selectedCategory === category.name ? 'white' : 'black' }
+                        ]}>
+                            {category.name}
+                        </Text>
+                    </TouchableOpacity>
+                ))}
             </View>
             <View style={COMMON_STYLES.mapContainer}>
                 <Map addresses={filteredAddresses} />
