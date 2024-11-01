@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import MapView, { Marker } from 'react-native-maps';
-import { Alert, View, Text } from 'react-native';
-import * as Location from 'expo-location';
+import MapView from 'react-native-maps';
+import { View, Text } from 'react-native';
 import { COMMON_STYLES } from '../styles/styles';
+import { requestLocationPermission, getCurrentLocation } from '../services/locationService';
+import { generateMarkers } from '../services/markerService';
 
 function Map({ addresses }) {
     const [region, setRegion] = useState(null);
 
     useEffect(() => {
         (async () => {
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                Alert.alert('Permission Denied', 'Location permission is required to show the map');
+            const hasPermission = await requestLocationPermission();
+            if (!hasPermission) {
+                console.log("Location permission not granted. Cannot proceed with map display.");
                 return;
             }
 
-            let location = await Location.getCurrentPositionAsync({});
-            setRegion({
-                latitude: location.coords.latitude,
-                longitude: location.coords.longitude,
-                latitudeDelta: 0.0322,
-                longitudeDelta: 0.0221,
-            });
+            try {
+                const userLocation = await getCurrentLocation();
+                setRegion(userLocation);
+            } catch (error) {
+                console.error("Error fetching location:", error);
+            }
         })();
     }, []);
 
@@ -33,21 +33,9 @@ function Map({ addresses }) {
         );
     }
 
-    const outletMarkers = addresses.map((location, index) => (
-        <Marker
-            key={index}
-            coordinate={{
-                latitude: location.latitude,
-                longitude: location.longitude,
-            }}
-            title={location.name}
-            description={location.address}
-        />
-    ));
-
     return (
         <MapView style={{ flex: 1 }} region={region} showsUserLocation>
-            {outletMarkers}
+            {generateMarkers(addresses)}
         </MapView>
     );
 }
