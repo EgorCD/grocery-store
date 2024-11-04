@@ -2,7 +2,7 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Home from '../screens/Home';
-import Catalog from '../screens/Catalog';
+import Cart from '../screens/Cart';
 import Addresses from '../screens/Addresses';
 import Statistics from '../screens/Statistics';
 import Profile from '../screens/Profile';
@@ -17,7 +17,7 @@ function BottomTabNavigator() {
                 tabBarIcon: ({ focused, color, size }) => {
                     let iconName;
                     if (route.name === 'Home') iconName = focused ? 'home' : 'home-outline';
-                    else if (route.name === 'Catalog') iconName = focused ? 'list' : 'list-outline';
+                    else if (route.name === 'Cart') iconName = focused ? 'cart' : 'cart-outline';
                     else if (route.name === 'Addresses') iconName = focused ? 'location' : 'location-outline';
                     else if (route.name === 'Statistics') iconName = focused ? 'bar-chart' : 'bar-chart-outline';
                     else if (route.name === 'Profile') iconName = focused ? 'person' : 'person-outline';
@@ -30,7 +30,7 @@ function BottomTabNavigator() {
             })}
         >
             <Tab.Screen name="Home" component={Home} />
-            <Tab.Screen name="Catalog" component={Catalog} />
+            <Tab.Screen name="Cart" component={Cart} />
             <Tab.Screen name="Addresses" component={Addresses} />
             <Tab.Screen name="Statistics" component={Statistics} />
             <Tab.Screen name="Profile" component={Profile} />
