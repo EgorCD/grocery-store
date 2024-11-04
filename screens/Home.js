@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { COMMON_STYLES } from '../styles/styles';
+import CategorySection from '../components/CategorySection';
+import UserGreeting from '../components/UserGreeting';
 
 function Home() {
   return (
-    <View>
-      <Text>Home Screen</Text>
+    <View style={COMMON_STYLES.outerContainer}>
+      <UserGreeting />
+      <CategorySection categoryName="Coffee" />
+      <CategorySection categoryName="Grocery" />
     </View>
   );
 }
