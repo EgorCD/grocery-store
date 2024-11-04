@@ -4,6 +4,7 @@ import { fetchItems } from '../services/FirestoreApi';
 import { COMMON_STYLES } from '../styles/styles';
 import ProductCard from './ItemCard';
 import LoadingIndicator from '../components/LoadingIndicator';
+import ItemCard from './ItemCard';
 
 const ItemList = ({ category }) => {
     const [items, setItems] = useState([]);
@@ -36,7 +37,7 @@ const ItemList = ({ category }) => {
             data={items}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                <ProductCard
+                <ItemCard
                     name={item.name}
                     description={item.description}
                     price={item.price}
