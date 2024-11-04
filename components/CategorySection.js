@@ -5,7 +5,7 @@ import ItemList from './ItemList';
 
 const CategorySection = ({ categoryName }) => {
     return (
-        <View style={{ marginTop: SPACING.medium }}>
+        <View style={COMMON_STYLES.categorySectionContainer}>
             <Text style={COMMON_STYLES.categoryTitleText}>{categoryName}</Text>
             <ItemList category={categoryName.toLowerCase()} />
         </View>

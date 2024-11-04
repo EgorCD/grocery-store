@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const screenWidth = Dimensions.get('window').width;
 
 export const COLORS = {
     primary: '#007AFF',
@@ -34,15 +36,36 @@ export const SPACING = {
 };
 
 export const COMMON_STYLES = StyleSheet.create({
+    outerContainer: {
+        flex: 1,
+        backgroundColor: COLORS.background,
+    },
+    headerContainer: {
+        paddingHorizontal: SPACING.small,
+    },
     container: {
         flex: 1,
         backgroundColor: COLORS.background,
         paddingHorizontal: SPACING.small,
     },
+    categorySectionContainer: {
+        marginTop: SPACING.medium,
+    },
+    contentContainerStyle: {
+        paddingHorizontal: SPACING.small,
+        paddingVertical: SPACING.small,
+    },
     titleText: {
         fontSize: FONT_SIZES.title,
         fontWeight: FONT_WEIGHTS.bold,
         color: COLORS.text,
+        marginBottom: SPACING.small,
+    },
+    categoryTitleText: {
+        fontSize: FONT_SIZES.title,
+        fontWeight: FONT_WEIGHTS.bold,
+        color: COLORS.text,
+        marginLeft: SPACING.small,
         marginBottom: SPACING.small,
     },
     subtitleText: {
@@ -122,5 +145,70 @@ export const COMMON_STYLES = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+    },
+});
+
+export const COMMON_COMPONENTS = StyleSheet.create({
+    productCard: {
+        cardContainer: {
+            width: screenWidth * 0.6,
+            backgroundColor: COLORS.white,
+            borderRadius: 15,
+            padding: SPACING.small,
+            marginRight: SPACING.small,
+        },
+        name: {
+            fontSize: FONT_SIZES.large,
+            fontWeight: FONT_WEIGHTS.bold,
+            color: COLORS.text,
+            marginBottom: SPACING.xsmall,
+        },
+        description: {
+            fontSize: FONT_SIZES.medium,
+            color: COLORS.secondaryText,
+        },
+        buttonRow: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            marginTop: SPACING.small,
+        },
+        priceButton: {
+            flex: 1,
+            backgroundColor: COLORS.primary,
+            paddingVertical: SPACING.small,
+            paddingHorizontal: SPACING.medium,
+            borderRadius: 90,
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        rowWithIcon: {
+            flexDirection: 'row',
+            alignItems: 'center',
+        },
+        iconConfig: {
+            name: 'add',
+            size: 18,
+            color: COLORS.white,
+        },
+        priceButtonText: {
+            color: COLORS.white,
+            fontSize: FONT_SIZES.small,
+            fontWeight: FONT_WEIGHTS.semibold,
+        },
+        quantityButton: {
+            flex: 1,
+            backgroundColor: COLORS.text,
+            paddingVertical: SPACING.small,
+            paddingHorizontal: SPACING.small,
+            borderRadius: 90,
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginRight: SPACING.xsmall,
+        },
+        quantityButtonText: {
+            color: COLORS.white,
+            fontSize: FONT_SIZES.small,
+            fontWeight: FONT_WEIGHTS.semibold,
+        },
     },
 });
