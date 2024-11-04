@@ -16,7 +16,6 @@ function Map({ addresses }) {
                 console.log("Location permission not granted. Cannot proceed with map display.");
                 return;
             }
-
             try {
                 const userLocation = await getCurrentLocation();
                 setRegion(userLocation);
