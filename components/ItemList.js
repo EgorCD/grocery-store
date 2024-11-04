@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList, Text, Alert } from 'react-native';
+import { View, FlatList, Alert } from 'react-native';
 import { fetchItems } from '../services/FirestoreApi';
 import { COMMON_STYLES } from '../styles/styles';
-import ProductCard from './ItemCard';
 import LoadingIndicator from '../components/LoadingIndicator';
 import ItemCard from './ItemCard';
 
@@ -24,6 +23,9 @@ const ItemList = ({ category }) => {
         })();
     }, [category]);
 
+    const updatedCategory = category.trim().toLowerCase();
+    const unit = updatedCategory === "coffee" ? "ml" : "g";
+
     if (loading) {
         return (
             <View style={COMMON_STYLES.loadingContainer}>
@@ -42,6 +44,7 @@ const ItemList = ({ category }) => {
                     description={item.description}
                     price={item.price}
                     quantity={item.quantity}
+                    unit={unit}
                 />
             )}
             horizontal={true}
