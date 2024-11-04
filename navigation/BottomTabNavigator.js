@@ -26,7 +26,7 @@ function BottomTabNavigator() {
                 },
                 tabBarActiveTintColor: 'black',
                 tabBarInactiveTintColor: 'gray',
-                headerLeft: () => route.name !== 'Home' ? <BackButton navigation={navigation} /> : null,
+                headerLeft: () => route.name !== 'Home' ? <BackButton navigation={navigation} /> : null, 
             })}
         >
             <Tab.Screen name="Home" component={Home} />
