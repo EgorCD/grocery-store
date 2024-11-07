@@ -156,6 +156,11 @@ export const COMMON_COMPONENTS = StyleSheet.create({
             borderRadius: 15,
             padding: SPACING.small,
             marginRight: SPACING.small,
+            flexDirection: 'column', 
+            justifyContent: 'space-between',
+        },
+        infoContainer: {
+            flexShrink: 1,
         },
         name: {
             fontSize: FONT_SIZES.large,
