@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { COMMON_COMPONENTS, SPACING } from '../styles/styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const ItemCard = ({ name, description, price, quantity, unit }) => {
+const ItemCard = ({ name, description, price, volume, unit }) => {
     return (
         <View style={COMMON_COMPONENTS.productCard.cardContainer}>
             <View style={COMMON_COMPONENTS.productCard.infoContainer}>
@@ -13,7 +13,7 @@ const ItemCard = ({ name, description, price, quantity, unit }) => {
             <View style={COMMON_COMPONENTS.productCard.buttonRow}>
                 <TouchableOpacity style={COMMON_COMPONENTS.productCard.quantityButton}>
                     <Text style={COMMON_COMPONENTS.productCard.quantityButtonText}>
-                        {quantity} {unit}
+                        {volume} {unit}
                     </Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={COMMON_COMPONENTS.productCard.priceButton}>

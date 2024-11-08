@@ -43,7 +43,7 @@ const ItemList = ({ category }) => {
                     name={item.name}
                     description={item.description}
                     price={item.price}
-                    quantity={item.quantity}
+                    volume={item.volume}
                     unit={unit}
                 />
             )}
