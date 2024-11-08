@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, FlatList, Alert } from 'react-native';
-import { fetchItems } from '../services/FirestoreApi';
+import { fetchItems } from '../services/firestore';
 import { COMMON_STYLES } from '../styles/styles';
 import LoadingIndicator from '../components/LoadingIndicator';
 import ItemCard from './ItemCard';

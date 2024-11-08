@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
 import { View } from 'react-native';
 import { COMMON_STYLES } from '../styles/styles';
-import { requestLocationPermission, getCurrentLocation } from '../services/locationService';
-import { generateMarkers } from '../services/markerService';
+import { requestLocationPermission, getCurrentLocation } from '../services/location';
+import { generateMarkers } from '../services/marker';
 import LoadingIndicator from '../components/LoadingIndicator';
 
 function Map({ addresses }) {
