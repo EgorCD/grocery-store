@@ -1,9 +1,6 @@
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { getFirestore, doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
-import { app } from "../firebaseConfig";
-
-const auth = getAuth(app);
-const db = getFirestore(app);
+import { onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../firebaseConfig";
 
 export const initializeAuthListener = (setAuthenticated) => {
     const removeAuthListener = onAuthStateChanged(auth, (user) => setAuthenticated(!!user));

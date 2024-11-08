@@ -1,8 +1,5 @@
 import { collection, getDocs, doc, runTransaction } from "firebase/firestore";
-import { getFirestore } from "firebase/firestore";
-import { app } from "../firebaseConfig";
-
-const db = getFirestore(app);
+import { db } from "../firebaseConfig";
 
 // https://firebase.google.com/docs/firestore/query-data/get-data
 
