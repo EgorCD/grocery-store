@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
-import { signIn } from '../../services/AuthService';
+import { signIn } from '../../services/auth';
 import { COMMON_STYLES, COLORS, FONT_SIZES, FONT_WEIGHTS, SPACING } from '../../styles/styles';
 
 function SignIn({ navigation }) {

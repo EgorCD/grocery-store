@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, Alert } from 'react-native';
-import { fetchUserProfile, saveUserProfile, handleSignOut } from '../services/AuthService';
+import { fetchUserProfile, saveUserProfile, handleSignOut } from '../services/auth';
 import ProfileButtons from '../components/ProfileButtons';
 import { COMMON_STYLES, COLORS, SPACING } from '../styles/styles';
 

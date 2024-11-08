@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import AppNavigator from './navigation/AppNavigator';
-import { initializeAuthListener } from './services/AuthService';
+import { initializeAuthListener } from './services/auth';
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);

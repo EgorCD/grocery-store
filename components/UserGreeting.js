@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Alert } from 'react-native';
-import { fetchUserProfile } from '../services/AuthService';
+import { fetchUserProfile } from '../services/auth';
 import { COMMON_STYLES, SPACING } from '../styles/styles';
 
 const UserGreeting = () => {
