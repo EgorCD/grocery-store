@@ -22,20 +22,17 @@ export const fetchItems = async (category) => {
 export const updateStock = async (selectedItems) => {
     try {
         await runTransaction(db, async (transaction) => {
-            const itemDataArray = [];
+            const items = [];
 
             // Perform all reads
             for (const item of selectedItems) {
                 const itemRef = doc(db, 'products', item.category, 'items', item.id);
                 const itemDoc = await transaction.get(itemRef);
-
                 if (!itemDoc.exists()) {
                     throw new Error(`Item "${item.name}" does not exist.`);
                 }
-
                 const currentStock = itemDoc.data().stock;
-
-                itemDataArray.push({
+                items.push({
                     item,
                     itemRef,
                     currentStock,
@@ -43,14 +40,14 @@ export const updateStock = async (selectedItems) => {
             }
 
             // Check for sufficient stock
-            for (const { item, currentStock } of itemDataArray) {
+            for (const { item, currentStock } of items) {
                 if (currentStock < item.quantity) {
                     throw new Error(`Insufficient stock for "${item.name}".`);
                 }
             }
 
             // Perform all writes
-            for (const { item, itemRef, currentStock } of itemDataArray) {
+            for (const { item, itemRef, currentStock } of items) {
                 transaction.update(itemRef, {
                     stock: currentStock - item.quantity,
                 });
