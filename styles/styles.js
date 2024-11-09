@@ -159,6 +159,20 @@ export const COMMON_COMPONENTS = StyleSheet.create({
             flexDirection: 'column', 
             justifyContent: 'space-between',
         },
+        quantitySelector: {
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: COLORS.primary,
+            paddingVertical: SPACING.small,
+            paddingHorizontal: SPACING.medium,
+            borderRadius: 90,
+        },
+        quantityText: {
+            color: COLORS.white,
+            fontSize: FONT_SIZES.medium,
+            fontWeight: FONT_WEIGHTS.semibold,
+            marginHorizontal: SPACING.small,
+        },
         infoContainer: {
             flexShrink: 1,
         },
