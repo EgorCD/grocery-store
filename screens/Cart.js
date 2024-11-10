@@ -14,10 +14,8 @@ function Cart() {
   const handleOrder = async () => {
     try {
       await updateStock(cartItems);
-
       const userId = auth.currentUser.uid;
       await saveOrder(userId, cartItems);
-
       Alert.alert('Order Successful', 'Your order has been placed.');
       clearCart();
     } catch (error) {
