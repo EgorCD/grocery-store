@@ -13,7 +13,13 @@ const ItemList = ({ category }) => {
         (async () => {
             try {
                 const fetchedItems = await fetchItems(category);
-                setItems(fetchedItems);
+                const trimmedCategory = category.trim().toLowerCase();
+                const unit = trimmedCategory === "coffee" ? "ml" : "g";
+                const itemsWithUnit = fetchedItems.map((item) => ({
+                    ...item,
+                    unit: unit,
+                }));
+                setItems(itemsWithUnit);
             } catch (err) {
                 console.error(`Error loading ${category} items:`, err);
                 Alert.alert(`Error loading ${category} items: ${err.message}`);
@@ -22,9 +28,6 @@ const ItemList = ({ category }) => {
             }
         })();
     }, [category]);
-
-    const updatedCategory = category.trim().toLowerCase();
-    const unit = updatedCategory === "coffee" ? "ml" : "g";
 
     if (loading) {
         return (
@@ -39,13 +42,7 @@ const ItemList = ({ category }) => {
             data={items}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-                <ItemCard
-                    name={item.name}
-                    description={item.description}
-                    price={item.price}
-                    volume={item.volume}
-                    unit={unit}
-                />
+                <ItemCard item={item} />
             )}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
