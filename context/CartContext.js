@@ -7,39 +7,27 @@ export const CartProvider = ({ children }) => {
 
     const addToCart = (item, quantity) => {
         setCartItems((prevItems) => {
-            let itemExists = false;
-            let updatedItems = [];
-            for (let i = 0; i < prevItems.length; i++) {
-                let currentItem = prevItems[i];
-                if (currentItem.id === item.id) {
-                    itemExists = true;
-                    if (quantity > 0) {
-                        updatedItems.push({ ...currentItem, quantity });
-                    }
+            const existingItem = prevItems.find((i) => i.id === item.id);
+            if (existingItem) {
+                if (quantity > 0) {
+                    return prevItems.map((i) =>
+                        i.id === item.id ? { ...i, quantity } : i
+                    );
                 } else {
-                    updatedItems.push(currentItem);
+                    return prevItems.filter((i) => i.id !== item.id);
+                }
+            } else {
+                if (quantity > 0) {
+                    return [...prevItems, { ...item, quantity }];
+                } else {
+                    return prevItems;
                 }
             }
-            if (!itemExists && quantity > 0) {
-                updatedItems.push({ ...item, quantity });
-            }
-
-            return updatedItems;
         });
     };
 
     const removeFromCart = (itemId) => {
-        setCartItems((prevItems) => {
-            let updatedItems = [];
-            for (let i = 0; i < prevItems.length; i++) {
-                let currentItem = prevItems[i];
-                if (currentItem.id !== itemId) {
-                    updatedItems.push(currentItem);
-                }
-            }
-
-            return updatedItems;
-        });
+        setCartItems((prevItems) => prevItems.filter((i) => i.id !== itemId));
     };
 
     const clearCart = () => {
