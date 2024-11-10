@@ -18,13 +18,7 @@ export const saveOrder = async (userId, cartItems) => {
 };
 
 const calculateTotalPrice = (items) => {
-    let total = 0;
-    for (let i = 0; i < items.length; i++) {
-        const currentItem = items[i];
-        const itemTotal = currentItem.price * currentItem.quantity;
-        total += itemTotal;
-    }
-    return total;
+    return items.reduce((total, item) => total + item.price * item.quantity, 0);
 };
 
 export const fetchUserOrders = async () => {
