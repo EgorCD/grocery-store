@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import AppNavigator from './navigation/AppNavigator';
 import { initializeAuthListener } from './services/auth';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -15,7 +16,11 @@ function App() {
 
   }, []);
 
-  return <AppNavigator isAuthenticated={isAuthenticated} />;
+  return (
+    <CartProvider>
+      <AppNavigator isAuthenticated={isAuthenticated} />
+    </CartProvider>
+  );
 }
 
 export default App;
