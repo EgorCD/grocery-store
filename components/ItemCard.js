@@ -2,8 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { COMMON_COMPONENTS } from '../styles/styles';
 import { CartContext } from '../context/CartContext';
-import QuantitySelector from './QuantitySelector';
-import PriceButton from './PriceButton';
+import ItemCardButtons from './ItemCardButtons';
 
 const ItemCard = ({ item }) => {
     const { cartItems, addToCart, removeFromCart } = useContext(CartContext);
@@ -57,15 +56,14 @@ const ItemCard = ({ item }) => {
                         {item.volume} {item.unit}
                     </Text>
                 </TouchableOpacity>
-                {showQuantitySelector ? (
-                    <QuantitySelector
-                        quantity={quantity}
-                        onIncrease={increaseQuantity}
-                        onDecrease={decreaseQuantity}
-                    />
-                ) : (
-                    <PriceButton price={item.price} onPress={handleAddToCart} />
-                )}
+                <ItemCardButtons
+                    showQuantitySelector={showQuantitySelector}
+                    quantity={quantity}
+                    onIncrease={increaseQuantity}
+                    onDecrease={decreaseQuantity}
+                    price={item.price}
+                    onAddToCart={handleAddToCart}
+                />
             </View>
         </View>
     );
