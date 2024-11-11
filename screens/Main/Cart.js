@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, Alert } from 'react-native';
-import { CartContext } from '../context/CartContext';
-import { COMMON_STYLES, SPACING } from '../styles/styles';
-import ItemCard from '../components/ItemCard';
-import OrderButton from '../components/OrderButton';
-import { updateStock } from '../services/firestore';
-import { saveOrder } from '../services/orders';
-import { auth } from '../firebaseConfig';
+import { CartContext } from '../../context/CartContext';
+import { COMMON_STYLES, SPACING } from '../../styles/styles';
+import ItemCard from '../../components/items/ItemCard';
+import OrderButton from '../../components/buttons/OrderButton';
+import { updateStock } from '../../services/firestore';
+import { saveOrder } from '../../services/orders';
+import { auth } from '../../firebaseConfig';
 
 function Cart() {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -40,7 +40,9 @@ function Cart() {
         <FlatList
           data={cartItems}
           keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <ItemCard item={item} />}
+          renderItem={({ item }) =>
+            <ItemCard item={item} />
+          }
           horizontal={true}
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={COMMON_STYLES.contentContainerStyle}

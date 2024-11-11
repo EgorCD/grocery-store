@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
-import { COLORS, COMMON_STYLES } from '../styles/styles';
+import { COLORS, COMMON_STYLES } from '../../styles/styles';
 
 function LoadingIndicator({ color = COLORS.primary, size = 'large' }) {
     return (

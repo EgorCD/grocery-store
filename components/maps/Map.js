@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import MapView from 'react-native-maps';
 import { View } from 'react-native';
-import { COMMON_STYLES } from '../styles/styles';
-import { requestLocationPermission, getCurrentLocation } from '../services/location';
-import { generateMarkers } from '../services/marker';
-import LoadingIndicator from '../components/LoadingIndicator';
+import { COMMON_STYLES } from '../../styles/styles';
+import { requestLocationPermission, getCurrentLocation } from '../../services/location';
+import { generateMarkers } from '../../services/marker';
+import LoadingIndicator from '../indicators/LoadingIndicator';
 
 function Map({ addresses }) {
     const [region, setRegion] = useState(null);

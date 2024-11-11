@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import { fetchUserOrders } from '../services/orders';
-import { COMMON_STYLES, SPACING } from '../styles/styles';
-import ItemCard from '../components/ItemCard';
-import { CartContext } from '../context/CartContext';
-import LoadingIndicator from '../components/LoadingIndicator';
+import { fetchUserOrders } from '../../services/orders';
+import { COMMON_STYLES, SPACING } from '../../styles/styles';
+import ItemCard from '../../components/items/ItemCard';
+import { CartContext } from '../../context/CartContext';
+import LoadingIndicator from '../../components/indicators/LoadingIndicator';
 
 function Statistics() {
     const [orders, setOrders] = useState([]);
@@ -69,29 +69,31 @@ function Statistics() {
 
     return (
         <View style={COMMON_STYLES.container}>
-            <Text style={COMMON_STYLES.titleText}>Your Order History</Text>
-            <FlatList
-                data={orders}
-                keyExtractor={(order) => order.id}
-                renderItem={({ item }) => (
-                    <View style={{ marginBottom: SPACING.medium }}>
-                        <Text style={COMMON_STYLES.subtitleText}>
-                            Order Date: {item.createdAt.toDate().toLocaleString()}
-                        </Text>
-                        <Text style={COMMON_STYLES.subtitleText}>
-                            Total Price: {item.totalPrice} €
-                        </Text>
-                        <FlatList
-                            data={item.items}
-                            keyExtractor={(orderItem) => orderItem.id}
-                            renderItem={renderOrderItem}
-                            horizontal={true}
-                            showsHorizontalScrollIndicator={false}
-                            contentContainerStyle={COMMON_STYLES.contentContainerStyle}
-                        />
-                    </View>
-                )}
-            />
+            <View style={{ marginTop: SPACING.medium }}>
+                <Text style={COMMON_STYLES.titleText}>Your Order History</Text>
+                <FlatList
+                    data={orders}
+                    keyExtractor={(order) => order.id}
+                    renderItem={({ item }) => (
+                        <View style={{ marginBottom: SPACING.medium }}>
+                            <Text style={COMMON_STYLES.subtitleText}>
+                                Order Date: {item.createdAt.toDate().toLocaleString()}
+                            </Text>
+                            <Text style={COMMON_STYLES.subtitleText}>
+                                Total Price: {item.totalPrice} €
+                            </Text>
+                            <FlatList
+                                data={item.items}
+                                keyExtractor={(orderItem) => orderItem.id}
+                                renderItem={renderOrderItem}
+                                horizontal={true}
+                                showsHorizontalScrollIndicator={false}
+                                contentContainerStyle={COMMON_STYLES.contentContainerStyle}
+                            />
+                        </View>
+                    )}
+                />
+            </View>
         </View>
     );
 }

@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { COMMON_COMPONENTS } from '../styles/styles';
-import { CartContext } from '../context/CartContext';
-import ItemCardButtons from './ItemCardButtons';
+import { COMMON_COMPONENTS } from '../../styles/styles';
+import { CartContext } from '../../context/CartContext';
+import ItemCardButtons from '../buttons/ItemCardButtons';
 
 const ItemCard = ({ item }) => {
     const { cartItems, addToCart, removeFromCart } = useContext(CartContext);

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
-import { COMMON_STYLES } from '../styles/styles';
-import CategorySection from '../components/CategorySection';
-import UserGreeting from '../components/UserGreeting';
+import { COMMON_STYLES } from '../../styles/styles';
+import CategorySection from '../../components/items/CategorySection';
+import UserGreeting from '../../components/UserGreeting';
 
 function Home() {
   return (

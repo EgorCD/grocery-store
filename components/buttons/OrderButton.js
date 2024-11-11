@@ -1,6 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
-import { COMMON_STYLES, SPACING } from '../styles/styles';
+import { COMMON_STYLES, SPACING } from '../../styles/styles';
 
 const OrderButton = ({ onPress }) => (
     <View style={{ marginRight: SPACING.small, marginLeft: SPACING.small }}>

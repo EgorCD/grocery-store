@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text } from 'react-native';
-import Map from '../components/Map';
-import { COMMON_STYLES, SPACING } from '../styles/styles';
-import outletAddresses from '../data/outletAddresses';
-import categoryOptions from '../data/categoryOptions';
-import CategorySelector from '../components/CategorySelector';
+import Map from '../../components/maps/Map';
+import { COMMON_STYLES, SPACING } from '../../styles/styles';
+import outletAddresses from '../../data/outletAddresses';
+import categoryOptions from '../../data/categoryOptions';
+import CategorySelector from '../../components/buttons/CategorySelector';
 
 function Addresses() {
     const [selectedCategory, setSelectedCategory] = useState(categoryOptions[0].name);

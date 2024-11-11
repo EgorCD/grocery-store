@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { COMMON_STYLES, SPACING } from '../styles/styles';
+import { COMMON_STYLES, SPACING } from '../../styles/styles';
 
 function ProfileButtons({ isEditing, handleSave, editStatus, handleSignOut }) {
     return (

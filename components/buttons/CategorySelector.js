@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { COMMON_STYLES, COLORS, SPACING } from '../styles/styles';
+import { COMMON_STYLES, COLORS, SPACING } from '../../styles/styles';
 
 const CategorySelector = ({ categoryOptions, selectedCategory, onCategorySelect }) => {
     return (
