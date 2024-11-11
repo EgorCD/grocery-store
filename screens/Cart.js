@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { View, Text, FlatList, Alert } from 'react-native';
 import { CartContext } from '../context/CartContext';
-import { COMMON_STYLES } from '../styles/styles';
+import { COMMON_STYLES, SPACING } from '../styles/styles';
 import ItemCard from '../components/ItemCard';
 import OrderButton from '../components/OrderButton';
 import { updateStock } from '../services/firestore';
@@ -26,7 +26,9 @@ function Cart() {
   if (cartItems.length === 0) {
     return (
       <View style={COMMON_STYLES.container}>
-        <Text style={COMMON_STYLES.titleText}>Your cart is empty</Text>
+        <View style={{ marginTop: SPACING.medium }}>
+          <Text style={COMMON_STYLES.titleText}>Your cart is empty</Text>
+        </View>
       </View>
     );
   }
