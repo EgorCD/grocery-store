@@ -162,7 +162,7 @@ export const COMMON_COMPONENTS = StyleSheet.create({
         quantitySelector: {
             flexDirection: 'row',
             alignItems: 'center',
-            backgroundColor: COLORS.primary,
+            backgroundColor: COLORS.error,
             paddingVertical: SPACING.small,
             paddingHorizontal: SPACING.medium,
             borderRadius: 90,
