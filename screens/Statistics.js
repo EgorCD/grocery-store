@@ -4,6 +4,7 @@ import { fetchUserOrders } from '../services/orders';
 import { COMMON_STYLES, SPACING } from '../styles/styles';
 import ItemCard from '../components/ItemCard';
 import { CartContext } from '../context/CartContext';
+import LoadingIndicator from '../components/LoadingIndicator';
 
 function Statistics() {
     const [orders, setOrders] = useState([]);
@@ -26,7 +27,7 @@ function Statistics() {
     if (loading) {
         return (
             <View style={COMMON_STYLES.loadingContainer}>
-                <Text>Loading orders...</Text>
+                <LoadingIndicator />
             </View>
         );
     }
