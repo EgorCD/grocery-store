@@ -4,6 +4,7 @@ import { fetchUserOrders } from '../../services/orders';
 import { COMMON_STYLES, SPACING } from '../../styles/styles';
 import ItemCard from '../../components/items/ItemCard';
 import { CartContext } from '../../context/CartContext';
+import StatisticsButton from '../../components/buttons/StatisticsButton';
 import LoadingIndicator from '../../components/indicators/LoadingIndicator';
 
 function Statistics() {
@@ -11,17 +12,20 @@ function Statistics() {
     const [loading, setLoading] = useState(true);
     const { addToCart } = useContext(CartContext);
 
+    const loadOrders = async () => {
+        setLoading(true);
+        try {
+            const userOrders = await fetchUserOrders();
+            setOrders(userOrders);
+        } catch (error) {
+            console.error('Error fetching orders:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        (async () => {
-            try {
-                const userOrders = await fetchUserOrders();
-                setOrders(userOrders);
-            } catch (error) {
-                console.error('Error fetching orders:', error);
-            } finally {
-                setLoading(false);
-            }
-        })();
+        loadOrders();
     }, []);
 
     if (loading) {
@@ -69,8 +73,8 @@ function Statistics() {
 
     return (
         <View style={COMMON_STYLES.container}>
+            <StatisticsButton onPress={loadOrders} />
             <View style={{ marginTop: SPACING.medium }}>
-                <Text style={COMMON_STYLES.titleText}>Your Order History</Text>
                 <FlatList
                     data={orders}
                     keyExtractor={(order) => order.id}
