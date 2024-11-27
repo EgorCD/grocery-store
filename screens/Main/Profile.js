@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, View, Text, TextInput, Alert } from 'react-native';
+import { View, Text, TextInput, Alert } from 'react-native';
 import { fetchUserProfile, saveUserProfile, handleSignOut } from '../../services/auth';
 import ProfileButtons from '../../components/buttons/ProfileButtons';
 import { COMMON_STYLES, COLORS, SPACING } from '../../styles/styles';
@@ -37,7 +37,7 @@ function Profile() {
     };
 
     return (
-        <ScrollView style={COMMON_STYLES.container}>
+        <View style={COMMON_STYLES.container}>
             <View style={{ marginTop: SPACING.medium }}>
                 <Text style={COMMON_STYLES.titleText}>Account Details</Text>
                 <TextInput
@@ -61,7 +61,7 @@ function Profile() {
                     handleSignOut={handleSignOut}
                 />
             </View>
-        </ScrollView>
+        </View>
     );
 }
 
